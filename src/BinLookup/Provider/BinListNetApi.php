@@ -67,7 +67,7 @@ class BinListNetApi extends ProviderAbstract
                 $data = $response->json();
                 return $this->_hydrate($data);
             }
-        }catch(\Exception $e) {
+        }catch (\Exception $e) {
             return false;
         }
 
