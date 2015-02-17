@@ -48,7 +48,7 @@ class BinLookup\Provider\Result#14 (10) {
 
 ### Installing via Composer
 
-The recommended way to install Guzzle is through
+The recommended way to install BinLookup is through
 [Composer](http://getcomposer.org).
 
 ```bash
