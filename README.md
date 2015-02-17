@@ -1,3 +1,5 @@
+![Scrutinizer-CI](https://scrutinizer-ci.com/g/mrferos/BinLookup/badges/quality-score.png?b=master)
+
 BinLookup
 ==========
 
