@@ -1,3 +1,4 @@
+![Travis-CI](https://travis-ci.org/mrferos/BinLookup.svg)
 ![Scrutinizer-CI](https://scrutinizer-ci.com/g/mrferos/BinLookup/badges/quality-score.png?b=master)
 
 BinLookup
