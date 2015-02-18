@@ -9,19 +9,19 @@ class NeutrinoApi extends ProviderAbstract
     /**
      * @var ClientInterface
      */
-    protected $_httpClient;
+    protected $httpClient;
     /**
      * @var string
      */
-    protected $_apiUrl = 'https://neutrinoapi.com/bin-lookup';
+    protected $apiUrl = 'https://neutrinoapi.com/bin-lookup';
     /**
      * @var string
      */
-    protected $_userName;
+    protected $userName;
     /**
      * @var string
      */
-    protected $_passCode;
+    protected $passCode;
 
     /**
      * @var array
@@ -40,11 +40,11 @@ class NeutrinoApi extends ProviderAbstract
      */
     public function getHttpClient()
     {
-        if (empty($this->_httpClient)) {
-            $this->setHttpClient(new Client($this->_apiUrl));
+        if (empty($this->httpClient)) {
+            $this->setHttpClient(new Client($this->apiUrl));
         }
 
-        return $this->_httpClient;
+        return $this->httpClient;
     }
 
     /**
@@ -56,7 +56,7 @@ class NeutrinoApi extends ProviderAbstract
             throw new \InvalidArgumentException('$httpClient must be an instance of Client');
         }
 
-        $this->_httpClient = $httpClient;
+        $this->httpClient = $httpClient;
     }
 
     /**
@@ -64,7 +64,7 @@ class NeutrinoApi extends ProviderAbstract
      */
     public function getUserName()
     {
-        return $this->_userName;
+        return $this->userName;
     }
 
     /**
@@ -72,7 +72,7 @@ class NeutrinoApi extends ProviderAbstract
      */
     public function setUserName($userName)
     {
-        $this->_userName = $userName;
+        $this->userName = $userName;
     }
 
     /**
@@ -80,7 +80,7 @@ class NeutrinoApi extends ProviderAbstract
      */
     public function getPassCode()
     {
-        return $this->_passCode;
+        return $this->passCode;
     }
 
     /**
@@ -88,7 +88,7 @@ class NeutrinoApi extends ProviderAbstract
      */
     public function setPassCode($passCode)
     {
-        $this->_passCode = $passCode;
+        $this->passCode = $passCode;
     }
 
     /**
@@ -100,7 +100,7 @@ class NeutrinoApi extends ProviderAbstract
         $httpClient = $this->getHttpClient();
 
         $username = $this->getUserName();
-        $apiKey   = $this->getPassCode();
+        $apiKey = $this->getPassCode();
 
         if (empty($username) || empty($apiKey)) {
             throw new \RuntimeException('Please provide a username and api key');
@@ -108,21 +108,21 @@ class NeutrinoApi extends ProviderAbstract
 
         try {
             $response = $httpClient
-                            ->post($this->_apiUrl, null, array(
-                                'user-id'       => $username,
-                                'api-key'    => $apiKey,
-                                'bin-number' => $binNumber
-                            ))
-                            ->send();
+                ->post($this->apiUrl, null, array(
+                    'user-id' => $username,
+                    'api-key' => $apiKey,
+                    'bin-number' => $binNumber
+                ))
+                ->send();
 
             if ($response->isSuccessful()) {
                 $data = $response->json();
-                return $this->_hydrate(array_merge(
+                return $this->hydrate(array_merge(
                     $data,
                     array('bin' => $binNumber)
                 ));
             }
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return false;
         }
 
