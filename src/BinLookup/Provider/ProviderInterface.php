@@ -1,7 +1,8 @@
 <?php
 namespace BinLookup\Provider;
 
-interface ProviderInterface {
+interface ProviderInterface
+{
     /**
      * @param array $options
      */

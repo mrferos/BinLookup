@@ -9,12 +9,12 @@ class BinListNetApi extends ProviderAbstract
     /**
      * @var ClientInterface
      */
-    protected $_httpClient;
+    protected $httpClient;
 
     /**
      * @var string
      */
-    protected $_apiUrl = 'http://www.binlist.net/json/';
+    protected $apiUrl = 'http://www.binlist.net/json/';
 
     /**
      * @var array
@@ -35,11 +35,11 @@ class BinListNetApi extends ProviderAbstract
      */
     public function getHttpClient()
     {
-        if (empty($this->_httpClient)) {
-            $this->setHttpClient(new Client($this->_apiUrl));
+        if (empty($this->httpClient)) {
+            $this->setHttpClient(new Client($this->apiUrl));
         }
 
-        return $this->_httpClient;
+        return $this->httpClient;
     }
 
     /**
@@ -51,7 +51,7 @@ class BinListNetApi extends ProviderAbstract
             throw new \InvalidArgumentException('$httpClient must be an instance of Client');
         }
 
-        $this->_httpClient = $httpClient;
+        $this->httpClient = $httpClient;
     }
 
     /**
@@ -65,9 +65,9 @@ class BinListNetApi extends ProviderAbstract
             $response = $httpClient->get($binNumber)->send();
             if ($response->isSuccessful()) {
                 $data = $response->json();
-                return $this->_hydrate($data);
+                return $this->hydrate($data);
             }
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return false;
         }
 

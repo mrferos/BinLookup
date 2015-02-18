@@ -15,14 +15,14 @@ abstract class ProviderAbstract implements ProviderInterface
         foreach ($options as $option => $value) {
             $optionName = $option;
             if (strstr($option, '_')) {
-                $option = preg_replace_callback('/_([a-z])/', function($c) {
+                $option = preg_replace_callback('/_([a-z])/', function ($c) {
                     return strtoupper($c[1]);
                 }, $option);
             }
 
             $method = 'set' . ucfirst($option);
             if (!method_exists($this, $method)) {
-                            throw new \InvalidArgumentException('Option ' . $optionName . ' is not accepted');
+                throw new \InvalidArgumentException('Option ' . $optionName . ' is not accepted');
             }
 
             call_user_func(array($this, $method), $value);
@@ -39,7 +39,7 @@ abstract class ProviderAbstract implements ProviderInterface
         return get_called_class();
     }
 
-    protected function _hydrate(array $dataToBeMapped)
+    protected function hydrate(array $dataToBeMapped)
     {
         if (!property_exists($this, '_dataMap')) {
             throw new \RuntimeException('The _dataMap property does not exists');
