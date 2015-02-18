@@ -38,7 +38,7 @@ class NeutrinoApiTest extends \PHPUnit_Framework_TestCase
         $NeutrinoApi->setUserName('test');
         $NeutrinoApi->setPassCode('test');
         $reflObject = new \ReflectionObject($NeutrinoApi);
-        $httpProp = $reflObject->getProperty('_httpClient');
+        $httpProp = $reflObject->getProperty('httpClient');
         $httpProp->setAccessible(true);
         $httpProp->setValue($NeutrinoApi, null);
 

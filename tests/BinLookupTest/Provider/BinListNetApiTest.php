@@ -32,7 +32,7 @@ class BinListNetApiTest extends \PHPUnit_Framework_TestCase
     {
         $binListNetApi = new BinListNetApi();
         $reflObject = new \ReflectionObject($binListNetApi);
-        $httpProp = $reflObject->getProperty('_httpClient');
+        $httpProp = $reflObject->getProperty('httpClient');
         $httpProp->setAccessible(true);
         $httpProp->setValue($binListNetApi, null);
 
